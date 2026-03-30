@@ -1,0 +1,50 @@
+name: content_publish
+
+on:
+  schedule:
+    - cron: "15 3,12 * * *"
+  workflow_dispatch:
+
+jobs:
+  scrape-latest:
+    runs-on: ubuntu-latest
+    environment: dev
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Decrypt large secret
+        run: ./tools/decrypt_firebase_cred.sh
+        env:
+          FIREBASE_SECRET_PASSPHRASE: ${{ secrets.FIREBASE_SECRET_PASSPHRASE }}
+
+      - name: Install system packages
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget bzip2 ca-certificates libglib2.0-0 ffmpeg
+
+      - name: Install Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install pip packages
+        run: |
+          pip install --upgrade pip
+          pip install --no-cache-dir -r requirements.txt
+
+      - name: Cleanup
+        run: |
+          sudo rm -rf ~/.cache/pip ~/.cache/huggingface /usr/local/lib/python*/dist-packages/nvidia*
+
+      - name: Run your program
+        env:
+          FIREBASE_DATABASE_URL: ${{ secrets.FIREBASE_DATABASE_URL }}
+          INSTAGRAM_LONG_LIVED_TOKEN: ${{ secrets.INSTAGRAM_LONG_LIVED_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          FREEIMAGE_API_KEY: ${{ secrets.FREEIMAGE_API_KEY }}
+          CATBOX_USERHASH: ${{ secrets.CATBOX_USERHASH }}
+        run: python3 src/main.py
