@@ -2,6 +2,8 @@
 .env
 .env.local
 .env.*.local
+secrets/
+resources/creds/*.json
 
 # Python
 __pycache__/
