@@ -1,4 +1,4 @@
-# Content Creator
+# ContentSynth
 
 This project automates the creation of short-form videos from text conversations. It converts text into speech using voice cloning, overlays the generated audio onto a pre-uploaded base video, adds synchronized subtitles, and produces a final MP4. The output video is then uploaded directly to Instagram using the Graph API.
 
