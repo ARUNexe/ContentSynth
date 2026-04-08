@@ -1,9 +1,8 @@
-from moviepy import VideoFileClip,AudioFileClip, CompositeVideoClip, TextClip
+from moviepy import VideoFileClip, AudioFileClip, CompositeVideoClip, TextClip
 from moviepy.video.tools.subtitles import SubtitlesClip
 import random
 import os
 import time
-import requests
 
 
 class VideoEngine:
@@ -12,13 +11,12 @@ class VideoEngine:
 
 
 
-    def __init__(self,job_id):
+    def __init__(self, job_id):
         self.job_id = job_id
         mkdir_path = f"outputs/{self.job_id}/video"
         os.makedirs(mkdir_path, exist_ok=True)
 
-
-    def create_video_clip(self,speaker1_timestamp,speaker2_timestamp,total_duration):
+    def create_video_clip(self, speaker1_timestamp, speaker2_timestamp, total_duration):
 
         start_time = time.time()
         print(f"Total video duration: {total_duration} seconds")

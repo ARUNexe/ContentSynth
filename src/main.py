@@ -1,17 +1,13 @@
 import audio_engine
 import video_engine
 import os
-import uuid
-import random
 import time
-import json
-import base64
 from dotenv import load_dotenv
 
 import firebase_admin
 from firebase_admin import credentials, db
 
-from  instagram_api_handler import *
+from instagram_api_handler import create_media_container
 
 from moviepy import VideoFileClip
 
