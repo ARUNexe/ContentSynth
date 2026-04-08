@@ -6,30 +6,24 @@ from dotenv import load_dotenv
 
 import firebase_admin
 from firebase_admin import credentials, db
-
 from instagram_api_handler import create_media_container
-
 from moviepy import VideoFileClip
 
-# Load environment variables from .env file
 load_dotenv()
 
 db_reference = None
 
-# Ensure decrypted credentials file exists
 if not os.path.exists("secrets/firebase_cred_secret.json"):
     raise FileNotFoundError(
         "Firebase credentials file not found at secrets/firebase_cred_secret.json. "
         "Please run: ./tools/decrypt_firebase_cred.sh or set FIREBASE_SECRET_PASSPHRASE in .env"
     )
-
 cred = credentials.Certificate("secrets/firebase_cred_secret.json")
-# cred = credentials.Certificate(cred_dict)
-
-
 firebase_admin.initialize_app(cred, {
     "databaseURL": os.getenv("FIREBASE_DATABASE_URL")
 })
+
+
 class ContentCreator:
     job_id = ""
 

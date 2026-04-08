@@ -9,8 +9,6 @@ class VideoEngine:
 
     job_id = ""
 
-
-
     def __init__(self, job_id):
         self.job_id = job_id
         mkdir_path = f"outputs/{self.job_id}/video"
