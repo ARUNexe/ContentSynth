@@ -78,7 +78,7 @@ def create_collective_transcription(job_id, speaker1_audio_path, speaker2_audio_
     max_sentence_words_length = 4
 
     end_time = create_transcription_withoffset(job_id, speaker1_audio_path, speaker1_transcription_srt_path, max_sentence_words_length, 0)
-        end_time = create_transcription_withoffset(job_id,speaker2_audio_path,speaker2_transcription_srt_path,max_sentence_words_length,end_time+0.2)
+    end_time = create_transcription_withoffset(job_id,speaker2_audio_path,speaker2_transcription_srt_path,max_sentence_words_length,end_time+0.2)
 
 
 
