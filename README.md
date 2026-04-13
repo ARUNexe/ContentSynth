@@ -4,6 +4,8 @@ This project automates the creation of short-form videos from text conversations
 
 The system is designed as a pipeline that handles text processing, speech synthesis, video composition, and publishing with minimal manual intervention.
 
+Live output : https://www.instagram.com/detoxing_quotes/
+
 ## Quick Start
 
 ### Installation
